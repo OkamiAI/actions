@@ -51,9 +51,6 @@ runs:
     uses: actions/setup-python@v6
     with:
       python-version: ${{ inputs.python-version }}
-
-  - name: Install uv
-    uses: astral-sh/setup-uv@v5
   
   - name: Install duploctl
     id: install-duploctl
@@ -62,9 +59,9 @@ runs:
       VERSION: ${{ inputs.version }}
     run: |
       if [[ "$VERSION" == "latest" ]]; then
-        uv pip install duplocloud-client --system || exit 1
+        pip install duplocloud-client || exit 1
       else
-        uv pip install duplocloud-client==$VERSION --system || exit 1
+        pip install duplocloud-client==$VERSION || exit 1
       fi
       
   - name: Duplo Version
